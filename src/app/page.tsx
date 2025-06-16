@@ -1,11 +1,11 @@
 'use client'
 
-import DisplayClock from './sections/model'
+import Glass from './sections/model'
 
 const HomePage = () => {
   return (
     <>
-      <DisplayClock />
+      <Glass />
     </>
   )
 }

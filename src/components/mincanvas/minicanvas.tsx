@@ -1,15 +1,13 @@
 /* eslint-disable react/no-unknown-property */
-import { Environment, OrbitControls, Stats } from '@react-three/drei'
+import { OrbitControls, Stats } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
-import gsap from 'gsap'
 import { button, Leva, useControls } from 'leva'
 import { Perf } from 'r3f-perf'
-import { ReactNode, Suspense, useEffect, useRef, useState } from 'react'
+import { ReactNode, Suspense, useRef } from 'react'
 
 import { useDeviceDetect } from '~/hooks/use-device-detect'
 import useShortcuts from '~/hooks/use-shortcuts'
 
-import Debug from '../debug/debug'
 import Effects from './effects'
 
 export default function CanvasWithModel({
@@ -21,7 +19,6 @@ export default function CanvasWithModel({
 }) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const target = useRef() as any
-  const [active, setActive] = useState(false)
   const { isMobile, isTablet, isAndroid } = useDeviceDetect()
   const zoom = isMobile && !isTablet ? 13 : 30
 
@@ -61,17 +58,10 @@ export default function CanvasWithModel({
     { order: -1 }
   )
 
-  useEffect(() => {
-    if (target.current) {
-      gsap.from(target.current, { zoom: 0, delay: 10 })
-    }
-  }, [target])
-
   return (
     <>
-      <Leva collapsed hidden={!active} />
+      <Leva collapsed />
       {fps ? <Stats /> : null}
-      <Debug set={setActive} />
       <Canvas
         ref={canvasRef}
         dpr={[1, 2]}
@@ -89,10 +79,6 @@ export default function CanvasWithModel({
         {fps ? <Perf position="bottom-left" logsPerSecond={1} /> : null}
 
         <Suspense fallback={null}>{children}</Suspense>
-        <Environment
-          files={'/textures/environments/studio_small_03_1k.hdr'}
-          environmentRotation={[0, 0, Math.PI / 2]}
-        />
 
         <Effects />
 
@@ -102,7 +88,7 @@ export default function CanvasWithModel({
           ref={target}
           makeDefault
           minZoom={10}
-          maxZoom={100}
+          maxZoom={300}
         />
       </Canvas>
     </>

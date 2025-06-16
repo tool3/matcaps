@@ -1,29 +1,34 @@
 /* eslint-disable react/no-unknown-property */
 import { useGLTF } from '@react-three/drei'
-import { useLoader } from '@react-three/fiber'
-import { useControls } from 'leva'
-import React from 'react'
-import { TextureLoader } from 'three'
+import { useThree } from '@react-three/fiber'
+import gsap from 'gsap'
+import { useLayoutEffect } from 'react'
+import { isMobile } from 'react-device-detect'
+
+import useMatcaps from '~/hooks/use-matcaps'
 
 export default function Glass(props) {
   const { nodes } = useGLTF('/models/glass.glb') as any
+  const { camera } = useThree()
 
-  const options = Array.from(
-    { length: 61 },
-    (_, i) => 'matcap_' + (i + 1) + '.png'
-  ).reduce((acc, curr) => {
-    acc[curr.replace('.png', '')] = curr
-    return acc
-  }, {})
+  const matcap = useMatcaps({
+    name: 'matcap',
+    defaultMatcap: `matcap_16`
+  }) as any
 
-  const matcap = useControls('Matcaps', {
-    matcap: {
-      value: 'matcap_16.png',
-      options
+  useLayoutEffect(() => {
+    if (camera) {
+      gsap.to(camera, {
+        duration: 1.5,
+        zoom: isMobile ? 50 : 100,
+        delay: 1,
+        ease: 'expo.inOut',
+        onUpdate: () => {
+          camera.updateProjectionMatrix()
+        }
+      })
     }
-  })
-
-  const [map] = useLoader(TextureLoader, [`/textures/matcaps/${matcap.matcap}`])
+  }, [camera])
 
   return (
     <group {...props} dispose={null}>
@@ -31,11 +36,10 @@ export default function Glass(props) {
         castShadow
         receiveShadow
         geometry={nodes.Outside.geometry}
-        material={nodes.Outside.material}
         position={[-3.24, 1.55, 0.073]}
         scale={0.01}
       >
-        <meshMatcapMaterial matcap={map} />
+        <meshMatcapMaterial matcap={matcap.matcap} />
       </mesh>
     </group>
   )
