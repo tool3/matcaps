@@ -5,16 +5,9 @@ import gsap from 'gsap'
 import { useLayoutEffect } from 'react'
 import { isMobile } from 'react-device-detect'
 
-import useMatcaps from '~/hooks/use-matcaps'
-
-export default function Glass(props) {
+export default function Glass({ children }: { children?: React.ReactNode }) {
   const { nodes } = useGLTF('/models/glass.glb') as any
   const { camera } = useThree()
-
-  const matcap = useMatcaps({
-    name: 'matcap',
-    defaultMatcap: `matcap_16`
-  }) as any
 
   useLayoutEffect(() => {
     if (camera) {
@@ -31,17 +24,15 @@ export default function Glass(props) {
   }, [camera])
 
   return (
-    <group {...props} dispose={null}>
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Outside.geometry}
-        position={[-3.24, 1.55, 0.073]}
-        scale={0.01}
-      >
-        <meshMatcapMaterial matcap={matcap.matcap} />
-      </mesh>
-    </group>
+    <mesh
+      castShadow
+      receiveShadow
+      geometry={nodes.Outside.geometry}
+      position={[-3.24, 1.55, 0.073]}
+      scale={0.01}
+    >
+      {children}
+    </mesh>
   )
 }
 
