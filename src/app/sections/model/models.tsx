@@ -11,8 +11,8 @@ export default function Models() {
   const modelComponents = {
     Glass: Glass,
     Fabric: Fabric,
-    Party: Party,
-    GeoCube: GeoCube,
+    Design: Party,
+    GeoCube: GeoCube
   }
 
   const model = useControls({
@@ -22,7 +22,7 @@ export default function Models() {
         geocube: 'GeoCube',
         glass: 'Glass',
         fabric: 'Fabric',
-        party: 'Party'
+        design: 'Design'
       }
     }
   })
@@ -30,19 +30,8 @@ export default function Models() {
   const Model = modelComponents[model.model]
 
   return (
-    <group>
-      {/* <GeoCube>
-        <Matcap />
-      </GeoCube> */}
-      {/* <Glass>
-        <Matcap />
-      </Glass> */}
-      {/* <Fabric>
-        <Matcap />
-      </Fabric> */}
-      <Model>
-        <Matcap />
-      </Model>
-    </group>
+    <Model>
+      <Matcap />
+    </Model>
   )
 }
