@@ -1,6 +1,7 @@
 // import GeoCube from '~/components/geocube/geocube'
 import { useControls } from 'leva'
 
+import Circles from '~/components/circles/circles'
 import Fabric from '~/components/fabric/fabric'
 import GeoCube from '~/components/geocube/geocube'
 import Glass from '~/components/glass/glass'
@@ -12,7 +13,8 @@ export default function Models() {
     Glass: Glass,
     Fabric: Fabric,
     Design: Party,
-    GeoCube: GeoCube
+    GeoCube: GeoCube,
+    Circles: Circles
   }
 
   const model = useControls({
@@ -22,7 +24,8 @@ export default function Models() {
         geocube: 'GeoCube',
         glass: 'Glass',
         fabric: 'Fabric',
-        design: 'Design'
+        design: 'Design',
+        circles: 'Circles'
       }
     }
   })
