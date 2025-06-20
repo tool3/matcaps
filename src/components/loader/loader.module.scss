@@ -15,24 +15,29 @@
   z-index: 1;
   position: fixed;
 
-  .title {
-    font-weight: 700;
-    -webkit-text-stroke-width: 3px;
-    -webkit-text-stroke-color: white;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    font-size: 16vw;
-    visibility: hidden;
-  }
-  .loading {
-    color: white;
-    font-size: 5rem;
-    -webkit-text-stroke-width: 3px;
-    -webkit-text-stroke-color: white;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+  .wrapper {
+    display: block;
+    overflow: hidden;
+    .title {
+      font-weight: 700;
+      -webkit-text-stroke-width: 3px;
+      -webkit-text-stroke-color: white;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-size: 16vw;
+      visibility: hidden;
+    }
+    .loading {
+      text-align: center;
+      color: white  ;
+      font-size: 5rem;
+      -webkit-text-stroke-width: 3px;
+      -webkit-text-stroke-color: white;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
   }
 
   .line {
