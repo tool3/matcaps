@@ -37,6 +37,11 @@
   src: url('../../public//fonts/Seven\ Segment.ttf') format('truetype');
 }
 
+@font-face {
+  font-family: HKGroteskWide;
+  src: url('../../public//fonts/HKGroteskWide_2020D/OTF/HKGroteskWide-Bold.otf') format('opentype');
+}
+
 :root {
   // Typography
   --font-system: -apple-system, blinkmacsystemfont, segoe ui, roboto, oxygen,

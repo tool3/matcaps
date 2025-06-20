@@ -1,77 +1,109 @@
 'use client'
 import { useProgress } from '@react-three/drei'
-import clsx from 'clsx'
 import gsap from 'gsap'
+import { SplitText } from 'gsap/SplitText'
 import { useLayoutEffect } from 'react'
 
-import s from './loader.module.scss'
+gsap.registerPlugin(SplitText)
 
-function fillNumbers(array: string[]) {
-  if (array.length === 1) {
-    return ['0', '0', ...array]
-  } else if (array.length === 2) {
-    return ['0', ...array]
-  } else {
-    return array
-  }
-}
+import s from './loader.module.scss'
 
 export default function Loader() {
   const { progress } = useProgress()
 
   useLayoutEffect(() => {
+    const { chars } = new SplitText(`.${s.title}`, {
+      type: 'chars'
+    })
+
+    const nums = new SplitText(`.${s.loading}`, {
+      type: 'chars'
+    })
+
+    const tl = gsap.timeline()
+
+    gsap.to(nums.chars, {
+      '-webkit-text-fill-color': 'white',
+      stagger: 0.08
+    })
+
     if (progress === 100) {
-      gsap.to(`.${s.letter}`, {
-        color: 'rgb(81, 33, 12)',
-        textShadow: 'none',
-        ease: 'back',
-        duration: 1,
-        delay: 1
+      tl.to(`.${s.title}`, { visibility: 'visible', delay: 1 })
+
+      tl.to(nums.chars, {
+        ease: 'expo.inOut',
+        yPercent: -300,
+        stagger: 0.08,
+        duration: 2
       })
-      gsap.to(`.${s.loader}`, {
+
+      tl.from(
+        chars,
+        {
+          opacity: 1,
+          ease: 'expo.inOut',
+          y: '100vh',
+          '-webkit-text-fill-color': 'white',
+          transformOrigin: '0% 100%',
+          stagger: 0.08,
+          duration: 2
+        },
+        '-=2.3'
+      )
+
+      tl.to(
+        nums.chars,
+        {
+          '-webkit-text-fill-color': 'transparent',
+        },
+        '<'
+      )
+
+      tl.to(nums.chars, {
+        ease: 'expo.inOut',
+        y: '-100vh',
+        stagger: 0.08,
+        duration: 1.5
+      })
+
+      tl.to(
+        chars,
+        {
+          '-webkit-text-fill-color': 'transparent',
+        },
+        '<'
+      )
+
+      tl.to(
+        chars,
+        {
+          ease: 'expo.inOut',
+          y: '-100vh',
+          stagger: 0.08,
+          duration: 2
+        },
+        '<'
+      )
+      tl.to(`.${s.loader}`, {
         opacity: 0,
-        delay: 1.5
+        duration: 0
       })
-      gsap.to(`.${s.loader}`, {
+
+      tl.to(`.${s.loader}`, {
         display: 'none',
-        delay: 2
+        duration: 0
       })
     }
+    tl.play()
   }, [progress])
 
-  const letters = ['P', '0', 'L', 'y', 'C', 'L', 'O', 'C', 'K']
-  const numbers = fillNumbers(progress.toFixed(0).split(''))
-
-  const loadComponent = numbers.map((letter, i) => {
-    return (
-      <div key={i} className={s.letter}>
-        {letter}
-      </div>
-    )
-  })
-  const lettersComponent = letters.map((letter, i) => {
-    const fourteen = new Set(['O', 'C'])
-
-    return (
-      <div
-        key={i}
-        className={clsx(s.letter, fourteen.has(letter) ? s.fourteen : '')}
-      >
-        {letter}
-      </div>
-    )
-  })
+  const prog = `${progress.toFixed(0).padStart(3, '0')}%`
 
   return (
     <div className={s.loader}>
-      <div className={s.title}>
-        <span className={s.on}>{lettersComponent}</span>
-        <span className={s.off}>{lettersComponent.map(() => '8')}</span>
-      </div>
-      <div className={s.numbers}>
-        <span className={s.on}>{loadComponent}</span>
-        <span className={s.off}>{loadComponent.map(() => '8')}</span>
-      </div>
+      <div className={s.title}>MATCAPS</div>
+      <div className={s.loading}>{prog}</div>
+      {/* <img src="/textures/matcaps/matcap_16.png" className={s.img} /> */}
     </div>
   )
 }

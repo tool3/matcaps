@@ -23,7 +23,7 @@
     "@tanstack/react-query": "^5.32.0",
     "clsx": "^2.1.1",
     "file-loader": "^6.2.0",
-    "gsap": "^3.12.5",
+    "gsap": "^3.13.0",
     "hls.js": "^1.5.8",
     "howler": "^2.2.4",
     "just-debounce-it": "^3.2.0",

@@ -14,7 +14,7 @@ export default function Glass({ children }: { children?: React.ReactNode }) {
       gsap.to(camera, {
         duration: 1.5,
         zoom: isMobile ? 50 : 100,
-        delay: 1,
+        delay: 5,
         ease: 'expo.inOut',
         onUpdate: () => {
           camera.updateProjectionMatrix()
