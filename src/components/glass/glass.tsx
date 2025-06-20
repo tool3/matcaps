@@ -11,7 +11,8 @@ export default function Glass({ children }: { children?: React.ReactNode }) {
 
   useLayoutEffect(() => {
     if (camera) {
-      gsap.to(camera, {
+      const tl = gsap.timeline()
+      tl.to(camera, {
         duration: 1.5,
         zoom: isMobile ? 50 : 100,
         delay: 5,
@@ -20,6 +21,22 @@ export default function Glass({ children }: { children?: React.ReactNode }) {
           camera.updateProjectionMatrix()
         }
       })
+
+      tl.to(
+        camera.position,
+        {
+          x: 25,
+          y: -15,
+          z: 50,
+          duration: 1.5,
+          ease: 'expo.inOut',
+          onUpdate: () => {
+            camera.updateProjectionMatrix()
+          }
+        },
+        '<'
+      )
+      tl.play()
     }
   }, [camera])
 

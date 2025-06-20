@@ -44,7 +44,13 @@ export default function Models() {
   const presetMatcap = presets[model.model]
 
   return (
-    <Suspense fallback={<Html>Loading model</Html>}>
+    <Suspense
+      fallback={
+        <Html center occlude zIndexRange={[2, 0]} style={{ zIndex: 0 }}>
+          Loading model
+        </Html>
+      }
+    >
       <Model>
         <Matcap defaultMatcap={presetMatcap} />
       </Model>

@@ -30,12 +30,7 @@ export default function Circles({ children }: { children?: React.ReactNode }) {
         >
           {children}
         </mesh>
-        <mesh
-          name="Plane"
-          castShadow
-          receiveShadow
-          position={[0, 0, 1]}
-        >
+        <mesh name="Plane" castShadow receiveShadow position={[0, 0, 1]}>
           <mesh
             name="GN_Instance"
             castShadow
