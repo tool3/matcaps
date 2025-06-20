@@ -4,7 +4,7 @@ import useMatcaps from '~/hooks/use-matcaps'
 export default function Matcap({
   defaultMatcap = 'matcap_16'
 }: {
-  defaultMatcap: string
+  defaultMatcap?: string
 }) {
   const matcap = useMatcaps({
     name: 'matcap',
