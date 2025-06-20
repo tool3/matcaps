@@ -21,21 +21,24 @@ export default function Loader() {
     })
 
     const tl = gsap.timeline()
-
-    gsap.to(nums.chars, {
+    tl.to(nums.chars, {
       '-webkit-text-fill-color': 'white',
       stagger: 0.08
     })
 
     if (progress === 100) {
-      tl.to(`.${s.title}`, { visibility: 'visible', delay: 1 })
+      tl.to(`.${s.title}`, { visibility: 'visible', delay: 1 }, '-=1')
 
-      tl.to(nums.chars, {
-        ease: 'expo.inOut',
-        yPercent: -300,
-        stagger: 0.08,
-        duration: 2
-      })
+      tl.to(
+        nums.chars,
+        {
+          ease: 'expo.inOut',
+          yPercent: -300,
+          stagger: 0.08,
+          duration: 2
+        },
+        '<'
+      )
 
       tl.from(
         chars,
@@ -51,14 +54,6 @@ export default function Loader() {
         '-=2.3'
       )
 
-      tl.to(
-        nums.chars,
-        {
-          '-webkit-text-fill-color': 'transparent',
-        },
-        '<'
-      )
-
       tl.to(nums.chars, {
         ease: 'expo.inOut',
         y: '-100vh',
@@ -67,9 +62,9 @@ export default function Loader() {
       })
 
       tl.to(
-        chars,
+        [chars, nums.chars],
         {
-          '-webkit-text-fill-color': 'transparent',
+          '-webkit-text-fill-color': 'transparent'
         },
         '<'
       )
@@ -84,10 +79,14 @@ export default function Loader() {
         },
         '<'
       )
-      tl.to(`.${s.loader}`, {
-        opacity: 0,
-        duration: 0
-      })
+      tl.to(
+        `.${s.loader}`,
+        {
+          opacity: 0,
+          duration: 0
+        },
+        '-=1'
+      )
 
       tl.to(`.${s.loader}`, {
         display: 'none',
