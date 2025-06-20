@@ -1,6 +1,7 @@
 /* eslint-disable no-inner-declarations */
 import { useTexture } from '@react-three/drei'
 import { useControls } from 'leva'
+import { useLayoutEffect } from 'react'
 import { MeshMatcapMaterial } from 'three'
 
 import useShortcuts from './use-shortcuts'
@@ -30,6 +31,10 @@ export default function useMatcaps({
         options
       }
     })) as any
+
+    useLayoutEffect(() => {
+      set({ matcap: `${defaultMatcap}.png` })
+    }, [defaultMatcap])
 
     useShortcuts({
       ArrowRight: {

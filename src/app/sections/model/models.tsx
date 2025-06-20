@@ -1,5 +1,7 @@
 // import GeoCube from '~/components/geocube/geocube'
+import { Html } from '@react-three/drei'
 import { useControls } from 'leva'
+import { Suspense } from 'react'
 
 import Circles from '~/components/circles/circles'
 import Fabric from '~/components/fabric/fabric'
@@ -30,11 +32,22 @@ export default function Models() {
     }
   })
 
+  const presets = {
+    Glass: 'matcap_16',
+    GeoCube: 'matcap_60',
+    Circles: 'matcap_61',
+    Fabric: 'matcap_18',
+    Design: 'matcap_60'
+  }
+
   const Model = modelComponents[model.model]
+  const presetMatcap = presets[model.model]
 
   return (
-    <Model>
-      <Matcap />
-    </Model>
+    <Suspense fallback={<Html>Loading model</Html>}>
+      <Model>
+        <Matcap defaultMatcap={presetMatcap} />
+      </Model>
+    </Suspense>
   )
 }

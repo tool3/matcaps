@@ -1,12 +1,10 @@
 'use client'
 import { useProgress } from '@react-three/drei'
 import gsap from 'gsap'
-import { ScrambleTextPlugin } from 'gsap/ScrambleTextPlugin'
 import { SplitText } from 'gsap/SplitText'
 import { useLayoutEffect } from 'react'
 
 gsap.registerPlugin(SplitText)
-gsap.registerPlugin(ScrambleTextPlugin)
 
 import s from './loader.module.scss'
 
@@ -75,11 +73,6 @@ export default function Loader() {
         },
         '-=1'
       )
-
-      // tl.to(`.${s.loader}`, {
-      //   display: 'none',
-      //   duration: 0
-      // })
     }
     tl.play()
   }, [progress])

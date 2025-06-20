@@ -12,11 +12,11 @@ const inter = Inter({ subsets: ['latin'], variable: '--font-body' })
 
 export const metadata: Metadata = {
   title: {
-    default: 'Polyclock | Tal Hayut',
+    default: 'Matcaps | Tal Hayut',
     template: '%s | Tal Hayut'
   },
   metadataBase: siteURL,
-  description: `3D display clock`,
+  description: `Matcaps lab`,
   icons: [
     {
       rel: 'apple-touch-icon',
@@ -26,9 +26,9 @@ export const metadata: Metadata = {
   manifest: '/manifest.webmanifest',
   twitter: {
     card: 'summary_large_image',
-    title: 'polyclock',
+    title: 'matcaps',
     creator: 'talhayut',
-    siteId: 'polyclock'
+    siteId: 'matcaps'
   }
 }
 
