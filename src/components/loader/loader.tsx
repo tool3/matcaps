@@ -65,13 +65,26 @@ export default function Loader() {
         },
         '<'
       )
+      tl.to(
+        `.${s.wrapper}`,
+        {
+          height: 0,
+          ease: 'expo.inOut'
+        },
+        '-=1'
+      )
+
+      tl.to(`.${s.wrapper}`, {
+        height: '100%',
+        ease: 'expo.out'
+      })
 
       tl.to(
         `.${s.loader}`,
         {
-          y: '-100vh'
+          zIndex: 0
         },
-        '-=1'
+        '-=0.5'
       )
     }
     tl.play()
@@ -85,7 +98,6 @@ export default function Loader() {
         <div className={s.title}>MATCAPS</div>
         <div className={s.loading}>{prog}</div>
       </div>
-      {/* <img src="/textures/matcaps/matcap_16.png" className={s.img} /> */}
     </div>
   )
 }

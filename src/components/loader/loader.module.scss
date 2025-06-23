@@ -18,6 +18,11 @@
   .wrapper {
     display: block;
     overflow: hidden;
+    border-top: 0.5px solid white;
+    border-bottom: 0.5px solid white;
+    width: 100%;
+    text-align: center;
+
     .title {
       font-weight: 700;
       -webkit-text-stroke-width: 3px;
@@ -30,7 +35,7 @@
     }
     .loading {
       text-align: center;
-      color: white  ;
+      color: white;
       font-size: 5rem;
       -webkit-text-stroke-width: 3px;
       -webkit-text-stroke-color: white;
@@ -38,20 +43,6 @@
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
-  }
-
-  .line {
-    height: 10px;
-    width: 100vw;
-    background: -webkit-linear-gradient(
-      90deg,
-      #dff1fcff,
-      #08c8f8ff,
-      #bfeefdff,
-      #0614dbff,
-      #152749ff
-    );
-    background-position: 0% 0%;
   }
 
   @media screen and (width <= 800px) {
