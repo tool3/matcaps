@@ -36,7 +36,6 @@
 
     .loading {
       transform: translateY(100%);
-      z-index: 0;
       color: white;
       font-size: 5rem;
       -webkit-text-stroke-width: 3px;
@@ -50,4 +49,8 @@
   @media screen and (width <= 800px) {
     font-size: 3rem;
   }
+}
+
+.gs-dev-tools {
+  z-index: 100 !important;
 }
