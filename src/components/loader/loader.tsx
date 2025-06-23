@@ -10,6 +10,7 @@ import s from './loader.module.scss'
 
 export default function Loader() {
   const { progress } = useProgress()
+  const prog = `${progress.toFixed(0).padStart(3, '0')}%`
 
   useLayoutEffect(() => {
     const { chars } = new SplitText(`.${s.title}`, {
@@ -21,37 +22,20 @@ export default function Loader() {
     })
 
     const tl = gsap.timeline()
+    tl.to(
+      nums.chars,
+      {
+        ease: 'expo.inOut',
+        yPercent: -150,
+        stagger: 0.08,
+        duration: 2,
+        '-webkit-text-fill-color': 'white'
+      },
+      '<'
+    )
 
     if (progress === 100) {
-      tl.to(`.${s.title}`, { visibility: 'visible', delay: 1 }, '-=1')
-
-      tl.to(
-        nums.chars,
-        {
-          ease: 'expo.inOut',
-          yPercent: -300,
-          stagger: 0.08,
-          '-webkit-text-fill-color': 'white',
-          duration: 2
-        },
-        '<'
-      )
-
-      tl.from(
-        chars,
-        {
-          opacity: 1,
-          ease: 'expo.inOut',
-          y: '100vh',
-          '-webkit-text-fill-color': 'white',
-          transformOrigin: '0% 100%',
-          stagger: 0.08,
-          duration: 2
-        },
-        '-=2.3'
-      )
-
-      tl.to([nums.chars, chars], {
+      tl.to(nums.chars, {
         ease: 'expo.inOut',
         y: '-100vh',
         stagger: 0.08,
@@ -59,12 +43,26 @@ export default function Loader() {
       })
 
       tl.to(
-        [chars, nums.chars],
+        chars,
         {
-          '-webkit-text-fill-color': 'transparent'
+          opacity: 1,
+          ease: 'expo.inOut',
+          yPercent: -60,
+          '-webkit-text-fill-color': 'white',
+          stagger: 0.08,
+          duration: 2
         },
         '<'
       )
+
+      tl.to(chars, {
+        ease: 'expo.inOut',
+        '-webkit-text-fill-color': 'transparent',
+        y: '-100vh',
+        stagger: 0.08,
+        duration: 2
+      })
+
       tl.to(
         `.${s.wrapper}`,
         {
@@ -82,15 +80,15 @@ export default function Loader() {
       tl.to(
         `.${s.loader}`,
         {
-          zIndex: 0
+          opacity: 0,
+          transformOrigin: 'center center',
+          ease: 'expo.inOut'
         },
         '-=0.5'
       )
     }
     tl.play()
   }, [progress])
-
-  const prog = `${progress.toFixed(0).padStart(3, '0')}%`
 
   return (
     <div className={s.loader}>

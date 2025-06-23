@@ -24,6 +24,7 @@
     text-align: center;
 
     .title {
+      transform: translateY(150%);
       font-weight: 700;
       -webkit-text-stroke-width: 3px;
       -webkit-text-stroke-color: white;
@@ -31,10 +32,11 @@
       -webkit-text-fill-color: transparent;
       background-clip: text;
       font-size: 16vw;
-      visibility: hidden;
     }
+
     .loading {
-      text-align: center;
+      transform: translateY(100%);
+      z-index: 0;
       color: white;
       font-size: 5rem;
       -webkit-text-stroke-width: 3px;
