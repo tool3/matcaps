@@ -22,27 +22,37 @@
     border-bottom: 0.5px solid white;
     width: 100%;
     text-align: center;
+    height: 0%;
 
     .title {
-      transform: translateY(150%);
+      transform: translateY(100%);
       font-weight: 700;
       -webkit-text-stroke-width: 3px;
       -webkit-text-stroke-color: white;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      font-size: 16vw;
+
+      @media screen and (width <= 600px) {
+        transform: translateY(160%);
+      }
     }
 
     .loading {
       transform: translateY(100%);
       color: white;
-      font-size: 5rem;
       -webkit-text-stroke-width: 3px;
       -webkit-text-stroke-color: white;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .digits{
+        display: block;
+      }
     }
   }
 

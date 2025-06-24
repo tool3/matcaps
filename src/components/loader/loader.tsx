@@ -5,62 +5,20 @@ import { useLayoutEffect } from 'react'
 
 gsap.registerPlugin(SplitText)
 
+import { isMobile } from 'react-device-detect'
+
 import s from './loader.module.scss'
 
 export default function Loader() {
-
   useLayoutEffect(() => {
     const tl = gsap.timeline()
-    let allowUpdate = true
     const { chars } = new SplitText(`.${s.title}`, {
       type: 'chars'
     })
 
-    const nums = new SplitText(`.${s.loading}`, {
-      type: 'chars'
-    })
-
-    gsap.to(nums.chars, {
-      ease: 'expo.inOut',
-      yPercent: -100,
-      duration: 1,
-      stagger: 0.08
-    })
-
-    gsap.to(nums.chars, {
-      ease: 'expo.inOut',
-      duration: 1,
-      delay: 1,
-      stagger: 0.08,
-      onUpdate: () => {
-        const first = nums.chars[0] as any
-        const second = nums.chars[1] as any
-        const third = nums.chars[2] as any
-
-        if (second.textContent <= 9 && allowUpdate) {
-          second.textContent = Number(second.textContent) + 1
-        }
-
-        if (third.textContent <= 9 && allowUpdate) {
-          third.textContent = Number(third.textContent) + 1
-        }
-
-        if (second.textContent == 9 && third.textContent == 9) {
-          first.textContent = 1
-          second.textContent = 0
-          third.textContent = 0
-
-          allowUpdate = false
-        }
-      }
-    })
-
-    tl.to(nums.chars, {
-      ease: 'expo.inOut',
-      y: '-100vh',
-      delay: 1,
-      stagger: 0.08,
-      duration: 2
+    tl.to(`.${s.wrapper}`, {
+      height: '8rem',
+      ease: 'expo.out'
     })
 
     tl.to(
@@ -68,7 +26,7 @@ export default function Loader() {
       {
         ease: 'expo.inOut',
         '-webkit-text-fill-color': 'white',
-        yPercent: -100,
+        yPercent: isMobile ? -110 : -100,
         stagger: 0.08,
         duration: 2
       },
@@ -123,7 +81,6 @@ export default function Loader() {
     <div className={s.loader}>
       <div className={s.wrapper}>
         <div className={s.title}>MATCAPS</div>
-        <div className={s.loading}>{'000%'}</div>
       </div>
     </div>
   )
