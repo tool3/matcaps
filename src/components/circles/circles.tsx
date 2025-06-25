@@ -1,22 +1,14 @@
 /* eslint-disable react/no-unknown-property */
-
 import { useAnimations, useGLTF } from '@react-three/drei'
-import { useLayoutEffect, useRef } from 'react'
+import React, { ReactNode, useLayoutEffect, useRef } from 'react'
 
-export default function Circles({ children }: { children?: React.ReactNode }) {
+export default function Circles({ children }: { children: ReactNode[] }) {
   const group = useRef() as any
   const { nodes, animations } = useGLTF('/models/circles.glb') as any
   const { actions } = useAnimations(animations, group)
 
   useLayoutEffect(() => {
-    if (actions) {
-      Object.keys(actions).forEach((key) => {
-        const action = actions[key]
-        if (action) {
-          action.play()
-        }
-      })
-    }
+    actions?.PlaneAction?.play()
   }, [actions])
 
   return (
@@ -27,15 +19,23 @@ export default function Circles({ children }: { children?: React.ReactNode }) {
           castShadow
           receiveShadow
           geometry={nodes.Plane001.geometry}
+          material={nodes.Plane001.material}
         >
           {children}
         </mesh>
-        <mesh name="Plane" castShadow receiveShadow position={[0, 0, 1]}>
+        <mesh
+          name="Plane"
+          castShadow
+          receiveShadow
+          material={nodes.Plane.material}
+          position={[0, 0, 1]}
+        >
           <mesh
             name="GN_Instance"
             castShadow
             receiveShadow
             geometry={nodes.GN_Instance.geometry}
+            material={nodes.GN_Instance.material}
             position={[1, 0, 0]}
           >
             {children}
@@ -45,6 +45,7 @@ export default function Circles({ children }: { children?: React.ReactNode }) {
             castShadow
             receiveShadow
             geometry={nodes.GN_Instance_1.geometry}
+            material={nodes.GN_Instance_1.material}
             position={[0.707, 0, -0.707]}
           >
             {children}
@@ -54,6 +55,7 @@ export default function Circles({ children }: { children?: React.ReactNode }) {
             castShadow
             receiveShadow
             geometry={nodes.GN_Instance_2.geometry}
+            material={nodes.GN_Instance_2.material}
             position={[0, 0, -1]}
           >
             {children}
@@ -63,6 +65,7 @@ export default function Circles({ children }: { children?: React.ReactNode }) {
             castShadow
             receiveShadow
             geometry={nodes.GN_Instance_3.geometry}
+            material={nodes.GN_Instance_3.material}
             position={[-0.707, 0, -0.707]}
           >
             {children}
@@ -72,6 +75,7 @@ export default function Circles({ children }: { children?: React.ReactNode }) {
             castShadow
             receiveShadow
             geometry={nodes.GN_Instance_4.geometry}
+            material={nodes.GN_Instance_4.material}
             position={[-1, 0, 0]}
           >
             {children}
@@ -81,6 +85,7 @@ export default function Circles({ children }: { children?: React.ReactNode }) {
             castShadow
             receiveShadow
             geometry={nodes.GN_Instance_5.geometry}
+            material={nodes.GN_Instance_5.material}
             position={[-0.707, 0, 0.707]}
           >
             {children}
@@ -90,6 +95,7 @@ export default function Circles({ children }: { children?: React.ReactNode }) {
             castShadow
             receiveShadow
             geometry={nodes.GN_Instance_6.geometry}
+            material={nodes.GN_Instance_6.material}
             position={[0, 0, 1]}
           >
             {children}
@@ -99,6 +105,7 @@ export default function Circles({ children }: { children?: React.ReactNode }) {
             castShadow
             receiveShadow
             geometry={nodes.GN_Instance_7.geometry}
+            material={nodes.GN_Instance_7.material}
             position={[0.707, 0, 0.707]}
           >
             {children}
