@@ -18,7 +18,8 @@ export default function Loader() {
 
     tl.to(`.${s.wrapper}`, {
       height: '8rem',
-      ease: 'expo.out'
+      ease: 'expo.out',
+      duration: 1
     })
 
     tl.to(

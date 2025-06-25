@@ -1,7 +1,10 @@
 // import GeoCube from '~/components/geocube/geocube'
 import { Html } from '@react-three/drei'
+import { useThree } from '@react-three/fiber'
+import gsap from 'gsap'
 import { useControls } from 'leva'
-import { Suspense } from 'react'
+import { Suspense, useLayoutEffect } from 'react'
+import { isMobile } from 'react-device-detect'
 
 import Circles from '~/components/circles/circles'
 import Fabric from '~/components/fabric/fabric'
@@ -18,6 +21,39 @@ export default function Models() {
     GeoCube: GeoCube,
     Circles: Circles
   }
+
+  const { camera } = useThree()
+
+  useLayoutEffect(() => {
+    if (camera) {
+      const tl = gsap.timeline()
+      tl.to(camera, {
+        duration: 1.5,
+        zoom: isMobile ? 50 : 100,
+        delay: 4,
+        ease: 'expo.inOut',
+        onUpdate: () => {
+          camera.updateProjectionMatrix()
+        }
+      })
+
+      tl.to(
+        camera.position,
+        {
+          x: 25,
+          y: -15,
+          z: 50,
+          duration: 1.5,
+          ease: 'expo.inOut',
+          onUpdate: () => {
+            camera.updateProjectionMatrix()
+          }
+        },
+        '<'
+      )
+      tl.play()
+    }
+  }, [camera])
 
   const model = useControls({
     model: {
