@@ -3,11 +3,9 @@ import gsap from 'gsap'
 import { SplitText } from 'gsap/SplitText'
 import { useLayoutEffect } from 'react'
 
-gsap.registerPlugin(SplitText)
-
-import { isMobile } from 'react-device-detect'
-
 import s from './loader.module.scss'
+
+gsap.registerPlugin(SplitText)
 
 export default function Loader() {
   useLayoutEffect(() => {
@@ -27,7 +25,7 @@ export default function Loader() {
       {
         ease: 'expo.inOut',
         '-webkit-text-fill-color': 'white',
-        yPercent: isMobile ? -110 : -100,
+        yPercent: -100,
         stagger: 0.08,
         duration: 2
       },
