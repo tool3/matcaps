@@ -59,7 +59,7 @@ export default function Loader() {
     )
 
     tl.to(`.${s.wrapper}`, {
-      height: '100%',
+      height: '99%',
       ease: 'expo.out'
     })
 
