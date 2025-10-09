@@ -34,7 +34,7 @@ export default function useMatcaps({
 
     useLayoutEffect(() => {
       set({ matcap: `${defaultMatcap}.png` })
-    }, [])
+    }, [defaultMatcap, set])
 
     useShortcuts({
       ArrowRight: {
@@ -58,6 +58,7 @@ export default function useMatcaps({
         }
       }
     })
+    console.log({ matcap });
     const texture = useTexture(`/textures/matcaps/${matcap.matcap}`) as any
     return new MeshMatcapMaterial({ matcap: texture })
   }
