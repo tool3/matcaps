@@ -1,6 +1,4 @@
-# polyclock
-
-![](./public/polyclock.gif)
+# matcaps
 
 Explore matcaps with threejs!
 
