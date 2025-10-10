@@ -58,7 +58,7 @@ export default function useMatcaps({
         }
       }
     })
-    console.log({ matcap });
+
     const texture = useTexture(`/textures/matcaps/${matcap.matcap}`) as any
     return new MeshMatcapMaterial({ matcap: texture })
   }

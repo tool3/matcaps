@@ -34,7 +34,7 @@ export default function CanvasWithModel({
   const { fps, background, rotate } = useControls(
     {
       fps: false,
-      rotate: false,
+      rotate: true,
       background: {
         value: isAndroid ? '#000000' : '#000000',
         onEditEnd: (value) => {

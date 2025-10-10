@@ -30,7 +30,7 @@ export default function Models() {
       tl.to(camera, {
         duration: 1.5,
         zoom: isMobile ? 50 : 100,
-        delay: 4,
+        delay: 5,
         ease: 'expo.inOut',
         onUpdate: () => {
           camera.updateProjectionMatrix()
@@ -41,7 +41,7 @@ export default function Models() {
         camera.position,
         {
           x: 25,
-          y: -15,
+          y: 25,
           z: 50,
           duration: 1.5,
           ease: 'expo.inOut',
@@ -57,7 +57,7 @@ export default function Models() {
 
   const model = useControls({
     model: {
-      value: 'Glass',
+      value: 'Circles',
       options: {
         geocube: 'GeoCube',
         glass: 'Glass',

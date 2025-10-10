@@ -1,5 +1,5 @@
 .loader {
-  font-size: 5rem;
+  font-size: 10rem;
   font-family: HKGroteskWide;
   color: var(--theme-color);
   will-change: opacity;
@@ -16,22 +16,57 @@
   position: fixed;
 
   .wrapper {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     overflow: hidden;
     border-top: 0.5px solid white;
     border-bottom: 0.5px solid white;
     width: 100%;
-    text-align: center;
     height: 0%;
+    position: relative;
 
     .title {
       transform: translateY(100%);
       font-weight: 700;
-      -webkit-text-stroke-width: 3px;
-      -webkit-text-stroke-color: white;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      color: rgb(201, 0, 34);
+      position: absolute;
+      filter: blur(1px);
+
+      @media screen and (width <= 600px) {
+        transform: translateY(160%);
+      }
+    }
+
+    .title2 {
+      transform: translateY(100%);
+      font-weight: 700;
+      color: rgb(61, 135, 254);
+      position: absolute;
+      filter: blur(1px);
+
+      @media screen and (width <= 600px) {
+        transform: translateY(160%);
+      }
+    }
+
+    .title3 {
+      transform: translateY(100%);
+      font-weight: 700;
+      color: rgb(6, 255, 164);
+      position: absolute;
+      filter: blur(1px);
+
+      @media screen and (width <= 600px) {
+        transform: translateY(160%);
+      }
+    }
+
+    .title4 {
+      transform: translateY(100%);
+      font-weight: 700;
+      color: white;
+      position: absolute;
 
       @media screen and (width <= 600px) {
         transform: translateY(160%);
@@ -50,14 +85,14 @@
       align-items: center;
       justify-content: center;
 
-      .digits{
+      .digits {
         display: block;
       }
     }
   }
 
   @media screen and (width <= 800px) {
-    font-size: 3rem;
+    font-size: 4.3rem;
   }
 }
 

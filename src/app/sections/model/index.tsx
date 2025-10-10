@@ -2,6 +2,7 @@
 
 import Loader from '~/components/loader/loader'
 import CanvasWithModel from '~/components/mincanvas/minicanvas'
+import Overlay from '~/components/overlay/overlay'
 
 import Models from './models'
 
@@ -12,6 +13,7 @@ export default function DisplayClock() {
       <CanvasWithModel style={{ width: '100vw', height: '100svh' }}>
         <Models />
       </CanvasWithModel>
+      <Overlay />
     </>
   )
 }

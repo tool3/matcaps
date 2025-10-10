@@ -89,7 +89,7 @@ export default function Effects() {
       ),
       Scanline: folder(
         {
-          scanlineEnabled: false,
+          scanlineEnabled: true,
           scanlineStrength: {
             value: 0.05,
             min: 0,
