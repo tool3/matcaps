@@ -16,11 +16,7 @@ Mobile: 3 finger tap.
 Desktop: option/alt + D.   
 
 
-Open an issue and let me know ! 
-
-# Stack
-- NextJS
-- GSAP
-- @react-three/fiber
-- @react-three/drei
-- threejs
+# Examples
+![](./public/geocube.png)
+![](./public/circles.png)
+![](./public/glass.png)
