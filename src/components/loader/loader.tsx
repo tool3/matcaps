@@ -4,6 +4,7 @@ import { SplitText } from 'gsap/SplitText'
 import { useLayoutEffect } from 'react'
 
 import s from './loader.module.scss'
+import { isMobile } from 'react-device-detect'
 
 gsap.registerPlugin(SplitText)
 
@@ -24,7 +25,8 @@ export default function Loader() {
       type: 'chars'
     })
 
-    const delay = 0.01;
+    const delay = 0.01
+    const yPercent = isMobile ? -150 : -100;
 
     tl.to(`.${s.wrapper}`, {
       height: '15rem',
@@ -37,7 +39,7 @@ export default function Loader() {
       chars,
       {
         ease: 'expo.inOut',
-        yPercent: -100,
+        yPercent,
         stagger: 0.08,
         duration: 2
       },
@@ -47,7 +49,7 @@ export default function Loader() {
       chars2,
       {
         ease: 'expo.inOut',
-        yPercent: -100,
+        yPercent,
         stagger: 0.08,
         delay,
         duration: 2
@@ -58,7 +60,7 @@ export default function Loader() {
       chars3,
       {
         ease: 'expo.inOut',
-        yPercent: -100,
+        yPercent,
         delay,
         stagger: 0.08,
         duration: 2
@@ -69,7 +71,7 @@ export default function Loader() {
       chars4,
       {
         ease: 'expo.inOut',
-        yPercent: -100,
+        yPercent,
         delay,
         stagger: 0.08,
         duration: 2
