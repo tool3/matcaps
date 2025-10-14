@@ -34,7 +34,7 @@ export default function useMatcaps({
 
     useLayoutEffect(() => {
       set({ matcap: `${defaultMatcap}.png` })
-    }, [defaultMatcap, set])
+    }, [])
 
     useShortcuts({
       ArrowRight: {

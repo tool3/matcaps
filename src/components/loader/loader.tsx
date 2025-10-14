@@ -2,9 +2,9 @@
 import gsap from 'gsap'
 import { SplitText } from 'gsap/SplitText'
 import { useLayoutEffect } from 'react'
+import { isMobile } from 'react-device-detect'
 
 import s from './loader.module.scss'
-import { isMobile } from 'react-device-detect'
 
 gsap.registerPlugin(SplitText)
 
