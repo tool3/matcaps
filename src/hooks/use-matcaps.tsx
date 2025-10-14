@@ -1,7 +1,7 @@
 /* eslint-disable no-inner-declarations */
 import { useTexture } from '@react-three/drei'
 import { useControls } from 'leva'
-import { useEffect, useLayoutEffect } from 'react'
+import { useEffect } from 'react'
 import { MeshMatcapMaterial } from 'three'
 
 import useShortcuts from './use-shortcuts'
