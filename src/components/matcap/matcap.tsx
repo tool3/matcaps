@@ -6,7 +6,6 @@ export default function Matcap({
 }: {
   defaultMatcap?: string
 }) {
-  console.log({ defaultMatcap });
   const matcap = useMatcaps({
     name: 'matcap',
     defaultMatcap

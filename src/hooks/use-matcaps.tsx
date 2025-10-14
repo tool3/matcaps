@@ -1,7 +1,7 @@
 /* eslint-disable no-inner-declarations */
 import { useTexture } from '@react-three/drei'
 import { useControls } from 'leva'
-import { useLayoutEffect } from 'react'
+import { useEffect, useLayoutEffect } from 'react'
 import { MeshMatcapMaterial } from 'three'
 
 import useShortcuts from './use-shortcuts'
@@ -32,10 +32,8 @@ export default function useMatcaps({
       }
     })) as any
 
-    useLayoutEffect(() => {
-      if (matcap !== defaultMatcap) {
-        set({ matcap: `${defaultMatcap}.png` })
-      }
+    useEffect(() => {
+      set({ matcap: `${defaultMatcap}.png` })
     }, [defaultMatcap, set])
 
     useShortcuts({
