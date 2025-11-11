@@ -7,7 +7,7 @@ import styles from './overlay.module.scss'
 
 export default function Overlay() {
   const [text, setText] = useState(
-    'Use ← and → to navigate matcaps and menu to change models'
+    'Use ← and → to navigate matcaps | Use menu to change models'
   )
 
   useLayoutEffect(() => {
