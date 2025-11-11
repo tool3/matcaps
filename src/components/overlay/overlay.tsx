@@ -7,12 +7,12 @@ import styles from './overlay.module.scss'
 
 export default function Overlay() {
   const [text, setText] = useState(
-    'Use ← and → to navigate matcaps, or use menu on top right'
+    'Use ← and → to navigate matcaps and menu to change models'
   )
 
   useLayoutEffect(() => {
     if (isMobile) {
-      setText('Use menu on the top to change models and matcaps')
+      setText('Use the menu to change models and matcaps')
     }
   }, [])
 
